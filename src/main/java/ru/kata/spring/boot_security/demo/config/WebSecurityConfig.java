@@ -19,8 +19,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public WebSecurityConfig(SuccessUserHandler successUserHandler, UserServiceSecurity userServiceSecurity) {
         this.successUserHandler = successUserHandler;
         this.userServiceSecurity = userServiceSecurity;
-
-
     }
 
     @Override
