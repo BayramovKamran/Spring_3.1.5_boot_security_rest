@@ -4,10 +4,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import ru.kata.spring.boot_security.demo.entity.User;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
+
+import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 public class UserServiceSecurity implements UserDetailsService {
@@ -19,13 +20,11 @@ public class UserServiceSecurity implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(String.format("User '%s' not found", username));
+    public UserDetails loadUserByUsername(String username_from_webpage) throws UsernameNotFoundException {
+        Optional<User> user_from_DB = userRepository.findByUsername(username_from_webpage);
+        if (user_from_DB.isEmpty()) {
+            throw new UsernameNotFoundException("Пользователь с таким именем не найден.");
         }
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(), user.getPassword(), user.getAuthorities());
+        return user_from_DB.get();
     }
 }
-
