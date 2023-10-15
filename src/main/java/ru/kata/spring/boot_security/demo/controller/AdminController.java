@@ -21,23 +21,23 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
     private final RoleService roleService;
     private final UserService userService;
 
     public AdminController(RoleService roleService, UserService userService) {
         this.roleService = roleService;
         this.userService = userService;
-
     }
 
     @GetMapping()
     public String showAllUsers(@ModelAttribute("user") User user, Principal principal, Model model) {
         User authenticatedUser = userService.findByUsername(principal.getName());
 
-        model.addAttribute ("authenticatedUser", authenticatedUser);
-        model.addAttribute ("roleOfAuthenticatedUser", authenticatedUser.getRoles());
+        model.addAttribute("authenticatedUser", authenticatedUser);
+        model.addAttribute("roleOfAuthenticatedUser", authenticatedUser.getRoles());
         model.addAttribute("users", userService.findAll());
-        model.addAttribute( "AllRoles", roleService.findAll());
+        model.addAttribute("AllRoles", roleService.findAll());
         return "admin-page";
     }
 
@@ -71,7 +71,7 @@ public class AdminController {
     @GetMapping("/new")
     public String form_for_create_user(Model model) {
         model.addAttribute("user", new User());
-        List<Role> roles =  roleService.findAll();
+        List<Role> roles = roleService.findAll();
         model.addAttribute("allRoles", roles);
         return "add-new-user";
     }
