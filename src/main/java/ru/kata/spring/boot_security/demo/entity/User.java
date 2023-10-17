@@ -57,7 +57,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String lastname, Integer age, String email, String password, Set<Role> roles) {
+    public User(String username, String lastname, Integer age, String email, String password,Set<Role> roles) {
         this.username = username;
         this.lastname = lastname;
         this.age = age;
@@ -69,11 +69,9 @@ public class User implements UserDetails {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
