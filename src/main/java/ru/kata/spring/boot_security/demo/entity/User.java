@@ -33,7 +33,7 @@ public class User implements UserDetails {
     private String lastname;
 
     @Column(name = "age")
-    private Byte age;
+    private Integer age;
 
     @Email
     @Column(name = "email")
@@ -42,7 +42,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -86,11 +86,11 @@ public class User implements UserDetails {
         this.lastname = lastname;
     }
 
-    public Byte getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(Byte age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
