@@ -19,10 +19,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "users")

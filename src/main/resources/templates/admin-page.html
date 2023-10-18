@@ -213,6 +213,7 @@
                                                         <div>
                                                             <label><b>Role</b></label>
                                                             <select class="form-select"
+                                                                    th:name="roles"
                                                                     aria-label="Default select example">
                                                                 <option th:each="role : ${AllRoles}"
                                                                         th:value="${role.getId()}"
