@@ -28,6 +28,7 @@ public class Init {
 
         Role roleAdmin = new Role(1L, "ROLE_ADMIN");
         Role roleUser = new Role(2L, "ROLE_USER");
+
         Set<Role> adminSet = new HashSet<>();
         Set<Role> userSet = new HashSet<>();
 
@@ -39,8 +40,10 @@ public class Init {
 
         User admin = new User("Admin", "Adminov", 25, "admin@mail.ru", "1111", adminSet);
         admin.setId(1L);
+
         User user = new User("User", "Userov", 40, "user@mail.ru", "2222", userSet);
         user.setId(2L);
+
         userService.saveUser(admin);
         userService.saveUser(user);
     }
