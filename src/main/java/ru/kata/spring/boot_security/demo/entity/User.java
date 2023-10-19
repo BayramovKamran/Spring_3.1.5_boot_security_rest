@@ -16,7 +16,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -29,23 +28,16 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "username")
     private String username;
-
     @Column(name = "lastname")
     private String lastname;
-
     @Column(name = "age")
     private Integer age;
-
-    @Email
     @Column(name = "email")
     private String email;
-
     @Column(name = "password")
     private String password;
-
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.PERSIST)
     @Fetch(FetchMode.JOIN)
@@ -57,7 +49,7 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String lastname, Integer age, String email, String password,List<Role> roles) {
+    public User(String username, String lastname, Integer age, String email, String password, List<Role> roles) {
         this.username = username;
         this.lastname = lastname;
         this.age = age;
@@ -69,9 +61,11 @@ public class User implements UserDetails {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -148,16 +142,6 @@ public class User implements UserDetails {
     }
 
     @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -168,6 +152,16 @@ public class User implements UserDetails {
     @Override
     public int hashCode() {
         return Objects.hash(id, username, lastname, age, email, password, roles);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 }
 

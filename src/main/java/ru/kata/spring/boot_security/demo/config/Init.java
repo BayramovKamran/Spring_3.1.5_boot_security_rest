@@ -14,7 +14,6 @@ import java.util.List;
 public class Init {
 
     private final UserService userService;
-
     private final RoleService roleService;
 
     public Init(UserService userService, RoleService roleService) {
