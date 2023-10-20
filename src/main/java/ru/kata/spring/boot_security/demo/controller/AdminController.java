@@ -68,7 +68,7 @@ public class AdminController {
     }
 
     @GetMapping("/new")
-    public String form_for_create_user(Model model) {
+    public String createUser(Model model) {
         model.addAttribute("user", new User());
         List<Role> roles = roleService.findAll();
         model.addAttribute("allRoles", roles);
