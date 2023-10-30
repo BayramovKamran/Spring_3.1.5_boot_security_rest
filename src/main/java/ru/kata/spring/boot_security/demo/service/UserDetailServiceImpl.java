@@ -4,28 +4,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.kata.spring.boot_security.demo.entity.User;
-import ru.kata.spring.boot_security.demo.repository.UserRepository;
-
-import javax.transaction.Transactional;
-import java.util.Optional;
+import ru.kata.spring.boot_security.demo.dao.UserDao;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
-    private final UserRepository userRepository;
+    private final UserDao userDao;
 
-    public UserDetailServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserDetailServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Override
-    @Transactional
-    public UserDetails loadUserByUsername(String usernameFromWebpage) throws UsernameNotFoundException {
-        Optional<User> userFromDB = userRepository.findByUsername(usernameFromWebpage);
-        if (userFromDB.isEmpty()) {
-            throw new UsernameNotFoundException("Пользователь с таким именем не найден.");
-        }
-        return userFromDB.get();
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return userDao.findByUsername(username);
     }
 }
