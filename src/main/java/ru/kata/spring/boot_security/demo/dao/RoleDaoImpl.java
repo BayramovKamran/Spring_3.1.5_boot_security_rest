@@ -29,13 +29,6 @@ public class RoleDaoImpl implements RoleDao {
     }
 
     @Override
-    public void update(Long id, Role role) {
-        Role roleToBeUpdated = entityManager.find(Role.class, id);
-        roleToBeUpdated.setName(role.getName());
-        entityManager.merge(roleToBeUpdated);
-    }
-
-    @Override
     public void delete(Long id) {
         entityManager.remove(entityManager.find(Role.class, id));
     }

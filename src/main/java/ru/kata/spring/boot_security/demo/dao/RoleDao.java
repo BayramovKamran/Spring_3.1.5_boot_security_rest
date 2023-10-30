@@ -12,7 +12,5 @@ public interface RoleDao {
 
     Role show(Long id);
 
-    void update (Long id, Role role);
-
     void delete(Long id);
 }
